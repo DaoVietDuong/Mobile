@@ -1,0 +1,16 @@
+<div ng-repeat="item in data">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab">
+            <h4 class="panel-title">
+    <a role="button" data-toggle="collapse" data-target="#collapse_{{item.ID}}" aria-expanded="false" aria-controls="collapse_{{item.ID}}">
+                {{item.Title}}
+    </a>
+      </h4>
+        </div>
+        <div class="collapse" id="collapse_{{item.ID}}">
+            <div class="well">
+                <p ng-bind-html="item.NoiDung"></p>
+            </div>
+        </div>
+    </div>
+</div>
