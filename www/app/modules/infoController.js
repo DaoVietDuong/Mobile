@@ -35,20 +35,21 @@ var infoService = homeModule.factory('infoService',
         }]);
 
 var activityInfoController = homeModule.controller('activityInfoController',
-    ['$scope', '$window', '$stateParams', '$uibModal', '$location',
-        'infoService', function
-($scope, $window, $stateParams, $uibModal, $location,
+    ['$scope', '$window', '$stateParams', '$uibModal', '$location', 'configService',
+        'infoService',
+        function ($scope, $window, $stateParams, $uibModal, $location, configService,
             infoService) {
-
+            var config = configService.config;
+            $scope.config = config;
             $scope.data = [];
 
-            var loadData = function () {
+            var updateData = function () {
                 infoService.activityInfo().then(function (data) {
                     $scope.data = data.Obj;
-                    console.log( data.Obj);
+                    console.log(data.Obj);
                 });
             };
-            loadData();
+            updateData();
 
         }]);
 
@@ -57,16 +58,13 @@ var eventInfoController = homeModule.controller('eventInfoController',
         'infoService', function
 ($scope, $window, $stateParams, $uibModal, $location,
             infoService) {
-
             $scope.data = [];
-
-            var loadData = function () {
+            var updateData = function () {
                 infoService.eventInfo().then(function (data) {
                     $scope.data = data.Obj;
-
                 });
             };
-            loadData();
+            updateData();
 
         }]);
 
@@ -75,34 +73,29 @@ var bussinessInfoController = homeModule.controller('bussinessInfoController',
         'infoService', function
 ($scope, $window, $stateParams, $uibModal, $location,
             infoService) {
-
             $scope.data = [];
-
-            var loadData = function () {
+            var updateData = function () {
                 infoService.bussinessInfo().then(function (data) {
                     $scope.data = data.Obj;
                     console.log(data.Obj);
                 });
             };
-            loadData();
+            updateData();
 
-        }]);                        
+        }]);
 var detailInfoController = homeModule.controller('detailInfoController',
     ['$scope', '$window', '$stateParams', '$uibModal', '$location',
         'infoService', function
 ($scope, $window, $stateParams, $uibModal, $location,
             infoService) {
-
             $scope.target = {};
             var paramId = $stateParams.id;
             console.log(paramId);
-            var loadData = function () {
+            var updateData = function () {
                 infoService.getById(paramId).then(function (data) {
                     console.log(data);
                     $scope.target = data.Obj;
-                    
-
                 });
             };
-            loadData();
+            updateData();
         }]);                                

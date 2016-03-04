@@ -38,8 +38,6 @@ homeModule.factory('documentService', [
                 // Return the promise to the controller
                 return item;
             },
-
-
             getById: function (id) {
                 var item = $http.get('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=ThongBao&ItemId=' + id)
                     .then(function (response) {
@@ -56,53 +54,55 @@ homeModule.factory('documentService', [
 
 
 var documentController = homeModule.controller('documentController',
-    ['$scope', '$window', '$stateParams', '$uibModal', '$location',
+    ['$scope', '$window', '$stateParams', '$uibModal', '$location', 'configService',
         'documentService',
-        function ($scope, $window, $stateParams, $uibModal, $location,
+        function ($scope, $window, $stateParams, $uibModal, $location, configService,
             documentService) {
+            var config = configService.config;
             $scope.data = [];
             $scope.target = {};
-            var loadData = function () {
+            var updateData = function () {
                 documentService.getNew().then(function (data) {
                     console.log(data);
                     $scope.target = data;
                     $scope.data = data.Obj;
                 });
             };
-            loadData();
+            updateData();
 
         }])
 
 var detailDocumentController = homeModule.controller('detailDocumentController',
-    ['$scope', '$window', '$stateParams', '$uibModal',
+    ['$scope', '$window', '$stateParams', '$uibModal', 'configService',
         'documentService',
-        function ($scope, $window, $stateParams, $uibModal,
+        function ($scope, $window, $stateParams, $uibModal, configService,
             documentService) {
+            $scope.config = configService.config;
+            console.log($scope.config);
             $scope.data = [];
             $scope.target = {};
-            var loadData = function(){};
+            var updateData = function () { };
             if ($stateParams.type && $stateParams.src) {
                 var _type = $stateParams.type;
                 var _src = $stateParams.src;
-                loadData = function () {
+                updateData = function () {
                     documentService.getByTypeSrcDocument(_type, _src).then(function (data) {
                         console.log(data);
                         $scope.target = data;
                         $scope.data = data.Obj;
                     });
                 };
-            } else if ($stateParams.type)
-            {
-            var _type = $stateParams.type;
-            loadData = function () {
-                documentService.getByTypeDocuments(_type).then(function (data) {
-                    console.log(data);
-                    $scope.target = data;
-                    $scope.data = data.Obj;
-                });
-            };                
+            } else if ($stateParams.type) {
+                var _type = $stateParams.type;
+                updateData = function () {
+                    documentService.getByTypeDocuments(_type).then(function (data) {
+                        console.log(data);
+                        $scope.target = data;
+                        $scope.data = data.Obj;
+                    });
+                };
             }
 
-            loadData();
+            updateData();
         }])
 

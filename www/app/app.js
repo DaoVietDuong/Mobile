@@ -3,7 +3,7 @@
 var mainApp = angular.module('mainApp', [
    'ngResource', 'ui.bootstrap', 'ui.router', 'ngRoute',
    'ngDirectives', 'ngFilters', 'ngControllers', 'ngServices',
-    'homeModule',
+    'homeModule', 'userModule'
     ]);
 
 
@@ -112,6 +112,12 @@ function($windowProvider, $stateProvider, $httpProvider , $urlRouterProvider, $r
         url: '/grovDocument',
         templateUrl : 'app/views/groupDocument.html',
         controller: 'grovDocumentController'         
+    })
+	.state('publicService',
+    {
+        url: '/publicService',
+        templateUrl : 'app/views/publicService.html',
+        controller: 'publicServiceController'
     });        
     // if(window.history && window.history.pushState){
             // //$locationProvider.html5Mode(true); will cause an error $location in HTML5 mode requires a  tag to be present! Unless you set baseUrl tag after head tag like so: <head> <base href="/">

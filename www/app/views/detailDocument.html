@@ -1,21 +1,8 @@
-                <div ng-repeat="firstItem in data">
-                    <div class="table-responsive">
-                        <table class="table table-condensed">
-                            <thead>
-                                <tr class="row">
-                                    <th  class="col-xs-3">Số công văn</th>
-                                    <th  class="col-xs-3">Ngày ban hành</th>
-                                    <th  class="col-xs-6">Nội dung mô tả</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="row">
-                                    <td class="col-xs-3">{{firstItem.Title}}</td>
-                                    <td class="col-xs-3">{{firstItem.NgayBanHanh | jsDate | date: 'MM/dd/yyyy'}}</td>
-                                    <td class="col-xs-6" ng-bind-html="firstItem.MoTa"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <hr>
-                </div>
+<div ng-repeat="firstItem in data" class="alert alert-success">
+    <Strong>STT: {{$index+1}}</Strong>
+    <hr>
+    <Br> Số công văn: {{firstItem.Title}}
+    <Br> Ngày ban hành: {{firstItem.NgayBanHanh | jsDate | date: 'MM/dd/yyyy'}}
+    <Br> Nội dụng mô tả:
+    <p ng-bind-html='firstItem.MoTa'></p>
+</div>

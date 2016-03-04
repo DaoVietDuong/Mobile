@@ -1,16 +1,12 @@
-
-    <h4>
+<h4>
           {{target.Title}}
       </h4>
-    <hr>
-    <div class="row" ng-repeat="item in data">
-        <div class="col-sm-12">
-            <h5 class="title">{{item.Title}}</h5>
-            <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> {{item.Created | jsDate |  date:'MM/dd/yyyy'}}</p>
-            <p class="text-muted">Người viết: <a >{{item.NguoiViet}}</a></p>
-        </div>
-      <hr>  
+<hr>
+<div class="row" ng-repeat="item in data">
+    <div class="col-sm-12">
+        <h5 class="title" ><a ui-sref="detail({id: item.ID})">{{item.Title}}</a></h5>
+        <p class="text-muted"><span class="glyphicon glyphicon-calendar"></span> {{item.Created | jsDate | date:'MM/dd/yyyy'}}</p>
+        <p class="text-muted">Người viết: <a>{{item.NguoiViet}}</a></p>
     </div>
-
-
-
+    <hr>
+</div>

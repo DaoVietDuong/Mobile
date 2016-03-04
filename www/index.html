@@ -15,20 +15,27 @@
     <script src="js/angular-route.js"></script>
     <script src="js/angular-resource.js"></script>
     <script src="js/angular-sanitize.js"></script>
+	<script src="js/jsCommon.js"></script>
     <script src="app/directives.js"></script>
     <script src="app/controllers.js"></script>
     <script src="app/filters.js"></script>
     <script src="app/services.js"></script>
     <script src="app/services/clientService.js"></script>
+	<script src="app/services/configService.js"></script>
     <script src="app/directives/dragDirective.js"></script>
     <script src="app/filters/dateFilter.js"></script>
     <script src="app/filters/imgFilter.js"></script>
     <script src="app/app.js"></script>
     <script src="app/modules/homeModule.js"></script>
+    <script src="app/modules/homeService.js"></script>
+    <script src="app/modules/userModule.js"></script>
     <script src="app/modules/homeController.js"></script>
     <script src="app/modules/introController.js"></script>
     <script src="app/modules/infoController.js"></script>
+    <script src="app/modules/publicServiceController.js"></script>
     <script src="app/modules/documentController.js"></script>
+    <script src="app/modules/authenticationController.js"></script>
+    <script src="app/controller/menuController.js"></script>
     <script src="js/ui-bootstrap.js"></script>
     <script src="js/ui-bootstrap-tpls.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
@@ -40,18 +47,19 @@
 </head>
 
 <body ng-app="mainApp">
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav id="custom-bootstrap-menu" class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid" ng-controller="indexController">
             <div class="navbar-header">
-
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button> <a class="navbar-brand" href="#">Bình Dương</a>
+                </button>
+                <a class="navbar-brand" href="#" ng-show="isLogin">{{brandName}}</a>
+                <a class="navbar-brand" ng-click="open()" ng-show="!isLogin">Đăng nhập</a>
             </div>
             <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a ui-sref="home"><strong>Trang chủ</strong></a></li>
+                    <li><a ui-sref="home" class="click"><strong>Trang chủ</strong></a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Giới thiệu <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -77,7 +85,7 @@
                             <li><a class="click" ui-sref="detailDocument({type: '{{config.typeDocument.vanBanLuat}}', src:''})">Văn bản luật</a></li>
                             <li><a class="click" ui-sref="detailDocument({type: '{{config.typeDocument.vanBanChinhPhu}}', src:''})">Văn bản chính phủ</a></li>
                             <li class="dropdown-submenu">
-                                <a class="trigger right-ca" >Văn bản, Bộ ngành<span class="caret"></span></a>
+                                <a class="trigger right-ca">Văn bản, Bộ ngành<span class="caret"></span></a>
                                 <ul class="dropdown-menu sub-menu">
                                     <li><a class="click" ui-sref="detailDocument({type: '{{config.typeDocument.vanBanBoNganh}}', src: '{{config.srcDocument.boTaiChinh}}'})">Bộ Tài chính</a></li>
                                     <li><a class="click" ui-sref="detailDocument({type: '{{config.typeDocument.vanBanBoNganh}}', src:'{{config.srcDocument.boKeHoachDauTu}}'})">Bộ Kế hoạch đầu tư</a></li>
@@ -106,32 +114,28 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hỏi Đáp <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Tin hoạt động</a></li>
-                            <li><a href="#">Tin vắn, tin sự kiện</a></li>
-                            <li><a href="#">Bản tin nghiệp vụ</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dịch vụ công<span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dịch vụ công<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Tin hoạt động</a></li>
-                            <li><a href="#">Tin vắn, tin sự kiện</a></li>
-                            <li><a href="#">Bản tin nghiệp vụ</a></li>
+                            <li><a class="click" ui-sref="publicService">Dịch vụ công</a></li>
                         </ul>
                     </li>
                 </ul>
+                <p class="text-right" ng-show="isLogin"><button type="button" ng-click="logOut()" class="btn btn-danger click">Đăng xuất</button></p>
+                
             </div>
+
         </div>
     </nav>
+
+
     <div class="container-fluid">
         <div ui-view></div>
     </div>
 
     <script src="js/custommenu.js">
-    </script>
-	        <script type="text/javascript">
-            app.initialize();
-        </script>
 </body>
 
 </html>
