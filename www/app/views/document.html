@@ -1,5 +1,5 @@
 <div ng-repeat="item in data">
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
         <div class="panel-heading" role="tab">
             <h4 class="panel-title">
     <a role="button" data-toggle="collapse" data-target="#collapse_{{item.ID}}" aria-expanded="false" aria-controls="collapse_{{item.ID}}">
@@ -8,13 +8,12 @@
       </h4>
         </div>
         <div class="collapse" id="collapse_{{item.ID}}">
-            <div class="well">
-                <div ng-repeat="firstItem in item.VanBan" class="alert alert-success">
+            <div >
+                <div ng-repeat="firstItem in item.VanBan" class="alert alert-default">
                     <Strong>STT: {{$index+1}}</Strong>
-                    <hr>
-                    <Br> Số công văn: {{firstItem.Title}}
-                    <Br> Ngày ban hành: {{firstItem.NgayBanHanh | jsDate | date: 'MM/dd/yyyy'}}
-                    <Br> Nội dụng mô tả:
+                    <Br> <span class="label label-primary">Số công văn</span>: {{firstItem.Title}}
+                    <Br> <span class="label label-primary">Ngày ban hành</span>: {{firstItem.NgayBanHanh | jsDate | date: 'MM/dd/yyyy'}}
+                    <Br> <span class="label label-primary">Nội dung mô tả</span>:
                     <p ng-bind-html='firstItem.MoTa'></p>
                 </div>
 

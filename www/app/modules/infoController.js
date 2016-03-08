@@ -46,7 +46,6 @@ var activityInfoController = homeModule.controller('activityInfoController',
             var updateData = function () {
                 infoService.activityInfo().then(function (data) {
                     $scope.data = data.Obj;
-                    console.log(data.Obj);
                 });
             };
             updateData();
@@ -77,7 +76,6 @@ var bussinessInfoController = homeModule.controller('bussinessInfoController',
             var updateData = function () {
                 infoService.bussinessInfo().then(function (data) {
                     $scope.data = data.Obj;
-                    console.log(data.Obj);
                 });
             };
             updateData();
@@ -93,7 +91,6 @@ var detailInfoController = homeModule.controller('detailInfoController',
             console.log(paramId);
             var updateData = function () {
                 infoService.getById(paramId).then(function (data) {
-                    console.log(data);
                     $scope.target = data.Obj;
                 });
             };

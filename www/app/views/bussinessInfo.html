@@ -4,7 +4,7 @@
 <hr>
 <div class="row" ng-repeat="item in data">
     <div class="col-sm-4">
-        <a ui-sref="detailInfo({id: item.ID})" class=""><img src="{{item.AnhDaiDien | imgUrlFilter}}" class="img-responsive"></a>
+        <a ui-sref="detailInfo({id: item.ID})" class=""><img src="{{item.AnhDaiDien | imgUrlFilter}}" data-rel="external" class="img-responsive"></a>
     </div>
     <div class="col-sm-8">
         <h5 class="title"><a ui-sref="detailInfo({id: item.ID})" >{{item.Title}}</a></h5>

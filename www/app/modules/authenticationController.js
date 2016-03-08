@@ -27,6 +27,7 @@ var authenticationController = userModule.controller('authenticationController',
             authenticationService) {
             var config = configService.config;  
             $scope.config = config;
+            $scope.message = "";
             $scope.data = [];
             $scope.target = {};
             $scope.login = function () {
@@ -39,7 +40,7 @@ var authenticationController = userModule.controller('authenticationController',
                             $scope.cancel();
                         }else
                         {
-                            console.log('Sai mật khẩu')
+                            $scope.message = "Không đăng nhập được, vui lòng kiểm tra lại thông tin!";
                         }
                     });
             };
