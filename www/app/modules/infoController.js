@@ -1,30 +1,30 @@
 var infoService = homeModule.factory('infoService',
-    ['$resource', '$http', '$window',
-        function ($resource, $http, $window) {
+    ['$resource', '$http', '$window', 'configService',
+        function ($resource, $http, $window, configService) {
             var result = {
                 activityInfo: function () {
-                    var items = $http.get('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=TinTuc&type=thd')
+                    var items = $http.get(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=TinTuc&type=thd')
                         .then(function (response) {
                             return response.data;
                         });
                     return items;
                 },
                 eventInfo: function () {
-                    var items = $http.get('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=TinTuc&type=tsk')
+                    var items = $http.get(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=TinTuc&type=tsk')
                         .then(function (response) {
                             return response.data;
                         });
                     return items;
                 },
                 bussinessInfo: function () {
-                    var items = $http.get('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=TinTuc&type=tnv')
+                    var items = $http.get(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=TinTuc&type=tnv')
                         .then(function (response) {
                             return response.data;
                         });
                     return items;
                 },
                 getById: function (id) {
-                    var item = $http.get('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=TinTuc&ItemId=' + id)
+                    var item = $http.get(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=TinTuc&ItemId=' + id)
                         .then(function (response) {
                             return response.data;
                         });
@@ -42,7 +42,6 @@ var activityInfoController = homeModule.controller('activityInfoController',
             var config = configService.config;
             $scope.config = config;
             $scope.data = [];
-
             var updateData = function () {
                 infoService.activityInfo().then(function (data) {
                     $scope.data = data.Obj;

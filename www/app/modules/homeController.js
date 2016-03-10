@@ -1,10 +1,10 @@
 homeModule.factory('indexService', [
-    '$resource', '$http', '$window',
-    function ($resource, $http, $window) {
+    '$resource', '$http', '$window', 'configService',
+    function ($resource, $http, $window, configService) {
         var result = {
             getAll: function () {
                 // $http returns a promise, which has a then function, which also returns a promise
-                var item = $http.get('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=ThongBao')
+                var item = $http.get(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=ThongBao')
                     .then(function (response) {
 
                         return response.data;
@@ -13,7 +13,7 @@ homeModule.factory('indexService', [
                 return item;
             },
             getById: function (id) {
-                var item = $http.get('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=ThongBao&ItemId=' + id)
+                var item = $http.get(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=ThongBao&ItemId=' + id)
                     .then(function (response) {
 
                         return response.data;

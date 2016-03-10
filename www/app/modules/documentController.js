@@ -1,10 +1,10 @@
 homeModule.factory('documentService', [
-    '$resource', '$http', '$window',
-    function ($resource, $http, $window) {
+    '$resource', '$http', '$window', 'configService',
+    function ($resource, $http, $window, configService) {
         var result = {
             getNew: function () {
                 // $http returns a promise, which has a then function, which also returns a promise
-                var item = $http.get('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=VanBan')
+                var item = $http.get(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=VanBan')
                     .then(function (response) {
 
                         return response.data;
@@ -14,7 +14,7 @@ homeModule.factory('documentService', [
             },
             getByTypeDocuments: function (_type) {
                 // $http returns a promise, which has a then function, which also returns a promise
-                var item = $http.get('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx',
+                var item = $http.get(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx',
                     {
                         params: { p: 'VanBan', type: _type }
                     })
@@ -27,7 +27,7 @@ homeModule.factory('documentService', [
             },
             getByTypeSrcDocument: function (_type, _src) {
                 // $http returns a promise, which has a then function, which also returns a promise
-                var item = $http.get('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx',
+                var item = $http.get(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx',
                     {
                         params: { p: 'VanBan', type: _type, cqbh: _src }
                     })
@@ -39,7 +39,7 @@ homeModule.factory('documentService', [
                 return item;
             },
             getById: function (id) {
-                var item = $http.get('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=ThongBao&ItemId=' + id)
+                var item = $http.get(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=ThongBao&ItemId=' + id)
                     .then(function (response) {
 
                         return response.data;

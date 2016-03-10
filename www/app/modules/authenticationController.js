@@ -1,10 +1,10 @@
 userModule.factory('authenticationService', [
-    '$resource', '$http', '$window', '$httpParamSerializerJQLike',
-    function ($resource, $http, $window, $httpParamSerializerJQLike) {
+    '$resource', '$http', '$window', '$httpParamSerializerJQLike', 'configService',
+    function ($resource, $http, $window, $httpParamSerializerJQLike, configService) {
         var result = {
             login: function (object) {
                 var res = $http({
-                    url: 'http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Login.ashx',
+                    url: configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Login.ashx',
                     method: 'POST',
                     data: $httpParamSerializerJQLike(object),
                     headers: {

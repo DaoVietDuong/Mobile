@@ -14,7 +14,7 @@ homeModule.factory('homeService',
             function initData() {
 
                 tempData.register('listDVC', null, function () {
-                   return $resource('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=DichvuCong').query({}, isArray = true);
+                   return $resource(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=DichvuCong').query({}, isArray = true);
                 });
 
             }

@@ -2,10 +2,10 @@ homeModule.factory('publicServiceService', [
     '$resource', '$http', '$window', '$httpParamSerializerJQLike',
     function ($resource, $http, $window, $httpParamSerializerJQLike) {
         var result = {
-            base: $resource('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Login.ashx'),
+            base: $resource(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Login.ashx'),
             query: function (object) {
                 var res = $http({
-                    url: 'http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx',
+                    url: configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx',
                     method: 'POST',
                     data: $httpParamSerializerJQLike(object),
                     headers: {

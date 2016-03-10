@@ -1,37 +1,37 @@
 var introService = homeModule.factory('introService',
-    ['$resource', '$http', '$window',
-        function ($resource, $http, $window) {
+    ['$resource', '$http', '$window', 'configService',
+        function ($resource, $http, $window, configService) {
             var result = {
                 generalIntro: function () {
-                    var items = $http.get('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=GioiThieu')
+                    var items = $http.get(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=GioiThieu')
                         .then(function (response) {
                             return response.data;
                         });
                     return items;
                 },
                 historyIntro: function () {
-                    var items = $http.get('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=GioiThieu&i=lichsu')
+                    var items = $http.get(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=GioiThieu&i=lichsu')
                         .then(function (response) {
                             return response.data;
                         });
                     return items;
                 },
                 featureIntro: function () {
-                    var items = $http.get('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=GioiThieu&i=chucnang')
+                    var items = $http.get(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=GioiThieu&i=chucnang')
                         .then(function (response) {
                             return response.data;
                         });
                     return items;
                 },
                 constructIntro: function () {
-                    var items = $http.get('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=GioiThieu&i=sodo')
+                    var items = $http.get(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=GioiThieu&i=sodo')
                         .then(function (response) {
                             return response.data;
                         });
                     return items;
                 },
                 directIntro: function () {
-                    var items = $http.get('http://bd.btsoftvn.net/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=GioiThieu&i=dinhhuong')
+                    var items = $http.get(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Action.ashx?p=GioiThieu&i=dinhhuong')
                         .then(function (response) {
                             return response.data;
                         });
