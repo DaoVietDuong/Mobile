@@ -1,6 +1,6 @@
 homeModule.factory('publicServiceService', [
-    '$resource', '$http', '$window', '$httpParamSerializerJQLike',
-    function ($resource, $http, $window, $httpParamSerializerJQLike) {
+    '$resource', '$http', '$window', '$httpParamSerializerJQLike', 'configService',
+    function ($resource, $http, $window, $httpParamSerializerJQLike, configService) {
         var result = {
             base: $resource(configService.rootUrl + '/dvc/_layouts/15/BTS.SP.INTERNET/Mobile/Login.ashx'),
             query: function (object) {
@@ -26,12 +26,14 @@ var publicServiceController = homeModule.controller('publicServiceController',
         'publicServiceService',
         function ($scope, $window, $stateParams, $uibModal, $location, clientService, configService, homeService,
             publicServiceService) {
+                console.log(configService);
             var currentUser = configService.currentUser.userData();
             $scope.data = [];
             $scope.target = {};
             $scope.filtered = {};
             $scope.tempData = homeService.tempData;
             $scope.page = angular.copy(configService.pageDefault);
+            
             $scope.filtered.PageObject = $scope.page;
             function updateData() {
                 var tranfer = { Description: "Dịch vụ công", Package: $scope.filtered }

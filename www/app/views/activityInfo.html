@@ -1,7 +1,11 @@
 <h4>
-          {{data[0].Tieude}}
-      </h4>
+ <back>
+</back>
+{{data[0].Tieude}}
+</h4>
 <hr>
+
+
 <div class="row" ng-repeat="item in data">
     <div class="col-sm-4">
         <a ui-sref="detailInfo({id: item.ID})"><img ng-src="{{item.AnhDaiDien | imgUrlFilter}}" alt="Description" class="img-responsive"/>
